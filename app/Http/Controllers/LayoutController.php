@@ -18,4 +18,10 @@ class LayoutController extends Controller
     public function register(){
         return view('admin.pages.register');
     }
+    public function home(){
+        return view('website.pages.home');
+    }
+    public function about(){
+        return view('website.pages.about');
+    }
 }

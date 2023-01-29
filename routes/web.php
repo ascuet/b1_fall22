@@ -33,3 +33,7 @@ Route::get('admin/dashboard', [LayoutController::class, 'dashboard']);
 Route::get('admin/form-elements', [LayoutController::class, 'formElements']);
 Route::get('admin/login', [LayoutController::class, 'login']);
 Route::get('admin/register', [LayoutController::class, 'register']);
+
+Route::get('home', [LayoutController::class, 'home']);
+
+Route::get('about-us', [LayoutController::class, 'about']);
