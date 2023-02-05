@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SampleController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LayoutController;
+use App\Http\Controllers\AuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,9 +32,13 @@ Route::get('/delete-employee/{id}', [EmployeeController::class, 'delete']);
 Route::get('admin/dashboard', [LayoutController::class, 'dashboard']);
 
 Route::get('admin/form-elements', [LayoutController::class, 'formElements']);
-Route::get('admin/login', [LayoutController::class, 'login']);
-Route::get('admin/register', [LayoutController::class, 'register']);
+
 
 Route::get('home', [LayoutController::class, 'home']);
 
 Route::get('about-us', [LayoutController::class, 'about']);
+
+Route::get('admin/login', [AuthController::class, 'login']);
+Route::post('admin/login-user',[AuthController::class, 'loginUser']);
+Route::get('admin/register', [AuthController::class, 'register']);
+Route::post('admin/store-user',[AuthController::class, 'storeUser']);
