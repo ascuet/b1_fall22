@@ -5,6 +5,7 @@ use App\Http\Controllers\SampleController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LayoutController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,3 +43,4 @@ Route::get('admin/login', [AuthController::class, 'login']);
 Route::post('admin/login-user',[AuthController::class, 'loginUser']);
 Route::get('admin/register', [AuthController::class, 'register']);
 Route::post('admin/store-user',[AuthController::class, 'storeUser']);
+Route::get('admin/users',[UserController::class, 'allUsers']);
