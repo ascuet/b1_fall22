@@ -48,4 +48,19 @@ Route::post('admin/store-user',[AuthController::class, 'storeUser']);
 Route::middleware(['checkLogin'])->group(function () {
     Route::get('admin/users',[UserController::class, 'allUsers']);
     Route::get('admin/approve/{userId}', [UserController::class, 'approve']);
+    
+    Route::middleware(['IsTeacher'])->group(function(){
+        Route::get('admin/give-marks', function(){
+            return 'Input marks as teacher';
+        });
+    });
+
+    Route::middleware(['IsStudent'])->group(function(){
+        Route::get('admin/my-marks', function(){
+            return 'Viewing marks as student';
+        });
+    });
+
+    Route::get('logout', [AuthController::class, 'logout']);
+    
 });

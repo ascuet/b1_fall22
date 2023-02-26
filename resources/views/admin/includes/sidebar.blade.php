@@ -10,6 +10,23 @@
         </a>
       </li><!-- End Dashboard Nav -->
 
+      @if(Session::has('userrole') && Session::get('userrole')=='Student')
+      <li class="nav-item">
+        <a class="nav-link " href="{{ url('admin/my-marks') }}">
+          <i class="bi bi-grid"></i>
+          <span>My Marks</span>
+        </a>
+      </li>
+      @endif
+      @if(Session::has('userrole') && Session::get('userrole')=='Teacher')
+      <li class="nav-item">
+        <a class="nav-link " href="{{ url('admin/give-marks') }}">
+          <i class="bi bi-grid"></i>
+          <span>Give Marks</span>
+        </a>
+      </li>
+      @endif
+
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
           <i class="bi bi-layout-text-window-reverse"></i><span>Users</span><i class="bi bi-chevron-down ms-auto"></i>

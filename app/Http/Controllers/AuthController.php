@@ -60,4 +60,9 @@ class AuthController extends Controller
             return redirect()->back()->with('fail','Invalid email or password');
         }
     }
+
+    public function logout(Request $request){
+        $request->session()->forget(['username', 'userrole']);
+        return redirect('admin/login');
+    }
 }
