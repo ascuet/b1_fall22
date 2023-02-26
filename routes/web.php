@@ -47,4 +47,5 @@ Route::post('admin/store-user',[AuthController::class, 'storeUser']);
 
 Route::middleware(['checkLogin'])->group(function () {
     Route::get('admin/users',[UserController::class, 'allUsers']);
+    Route::get('admin/approve/{userId}', [UserController::class, 'approve']);
 });
