@@ -30,12 +30,53 @@
                 </select>
             </div>
             <div class="form-group">
-
+                <label for="">Name</label>
+                <input type="text" name="name" id="name" class="form-control">
             </div>
             <div class="form-group">
-
+                <button type="submit" id="submitBtn" class="btn btn-primary">Save</button>
             </div>
         </form>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#division").change(function(){
+                var division_id = $(this).val();
+                $("#district").empty();
+                $.ajax({
+                    url: 'http://127.0.0.1:8000/api/districts/'+division_id,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(response){
+                        var districts = response.districts;
+                        var len = districts.length;
+                        str = ' <option value="">SELECT DISTRICT</option>';
+                        for(var i=0; i<len; i++){
+                            str += '<option value="'+districts[i].id+'">'+districts[i].name+'</option>'
+                            
+                        }
+                        $("#district").append(str);
+                    }
+                });
+            });
+            $("#submitBtn").click(function(evt){
+                evt.preventDefault();
+                $.ajax({
+                    url: 'http://127.0.0.1:8000/api/store-teacher',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        teacher_division: $("#division").val(),
+                        teacher_district: $("#district").val(),
+                        teacher_name: $("#name").val()
+                    },
+                    success: function(response){
+                        console.log(response.msg)
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
