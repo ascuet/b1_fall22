@@ -13,7 +13,7 @@
 <body>
     <div class="container">
         <h3>Create Employee</h3>
-        <form action="{{ url('/store-employee') }}" method="post">
+        <form action="{{ url('/store-employee') }}" enctype="multipart/form-data" method="post">
             @csrf
             <div class="form-group">
                 <label for="">Name</label>
@@ -58,6 +58,10 @@
                         <input type="radio" class="form-check-input" name="gender" value="Other">Other
                     </label>
                 </div>
+            </div>
+            <div class="form-group">
+                <label for="">Profile Picture</label>
+                <input type="file" class="form-control" name="profile_pic" id="">
             </div>
             <div class="form-group">
                 <label for="">Address</label>

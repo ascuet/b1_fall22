@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Employee;
 use Illuminate\Support\Facades\DB;
+use Image;
 class EmployeeController extends Controller
 {
     public function create(){
@@ -23,6 +24,21 @@ class EmployeeController extends Controller
         }    
         $gender = $req->gender;
         $address = $req->address;
+
+        $originalImage = $req->file('profile_pic');
+        $thumbnailImage = Image::make($originalImage);
+
+        $thumbnailPath = public_path().'/thumbnail/';
+        $originalPath = public_path().'/images/';
+
+        $full_file_name = $originalImage->getClientOriginalName();
+        $extension = $originalImage->getClientOriginalExtension();
+        $filename = time().'.'.$extension;
+
+        $thumbnailImage->save($originalPath.$filename);
+        
+        $thumbnailImage->resize(150,150);
+        $thumbnailImage->save($thumbnailPath.$filename); 
 
         // insert into employees table
         
@@ -48,7 +64,8 @@ class EmployeeController extends Controller
             'department'=> $department, 
             'status'=> $status, 
             'gender'=> $gender, 
-            'address'=> $address
+            'address'=> $address,
+            'profile_pic' => $filename
         ]);
         // End of Query Builder
     }

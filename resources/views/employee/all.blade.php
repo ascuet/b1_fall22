@@ -25,6 +25,7 @@
                 <th>Status</th>
                 <th>Gender</th>
                 <th>Address</th>
+                <th>Profile Picture</th>
                 <th>Action</th>
             </tr>
             </thead>
@@ -46,6 +47,9 @@
                     </td>
                     <td>{{ $emp->gender }}</td>
                     <td>{{ $emp->address }}</td>
+                    <td>
+                        <img src="{{ asset('thumbnail/'.$emp->profile_pic)  }}" alt="">
+                    </td>
                     <td>
                         <a href="{{ url ('/edit-employee/'.$emp->id) }}" class="btn btn-secondary">Edit</a>
                         <a data-toggle="modal" data-target="#emp{{$emp->id}}" class="btn btn-danger">Delete</a>
